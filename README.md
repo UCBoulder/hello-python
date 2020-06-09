@@ -30,3 +30,10 @@ or
 
     docker run hello-python:latest
     
+### Custom message
+
+    podman run -e MESSAGE='¡Hola!' hello-python:latest
+    
+or
+
+    docker run -e MESSAGE='¡Hola!' hello-python:latest

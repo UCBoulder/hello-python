@@ -1,5 +1,6 @@
 from unittest import TestCase
 from unittest.mock import patch
+import os
 
 import hello
 
@@ -14,8 +15,6 @@ class TestHello(TestCase):
         for p in self.patches:
             p.stop()
 
-
-    def test_hello(self):
+    def test_default(self):
         hello.hello()
         self.stegosaurus.assert_called_once_with("I'm a giraffe!")
-

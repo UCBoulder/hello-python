@@ -1,4 +1,5 @@
 import cowsay
+from . import config
 
 def hello():
-    cowsay.stegosaurus("I'm a giraffe!")
+    cowsay.stegosaurus(config.message)
