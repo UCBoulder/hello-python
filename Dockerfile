@@ -1,4 +1,4 @@
-FROM ubi8/python-38 as base
+FROM registry.access.redhat.com/ubi8/python-38:1-22 as base
 
 RUN pip install pipenv
 
