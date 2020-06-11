@@ -18,6 +18,7 @@ jobs:
         with:
           tags: latest
           tag_with_sha: true
-          repository: https://cuartifacts-platform-engineering-docker-local.jfrog.io/hello-python
+          repository: hello-python
           username: ${{ secrets.ARTIFACTORY_USERNAME }}
           password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          registry: https://cuartifacts-platform-engineering-docker-local.jfrog.io
