@@ -21,4 +21,4 @@ jobs:
           repository: hello-python
           username: ${{ secrets.ARTIFACTORY_USERNAME }}
           password: ${{ secrets.ARTIFACTORY_PASSWORD }}
-          registry: https://cuartifacts-platform-engineering-docker-local.jfrog.io
+          registry: cuartifacts-platform-engineering-docker-local.jfrog.io
