@@ -1,0 +1,23 @@
+name: Build Container
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v1.1.0
+        with:
+          tags: latest
+          tag_with_sha: true
+          repository: https://cuartifacts-platform-engineering-docker-local.jfrog.io/hello-python
+          username: ${{ secrets.ARTIFACTORY_USERNAME }}
+          password: ${{ secrets.ARTIFACTORY_PASSWORD }}
