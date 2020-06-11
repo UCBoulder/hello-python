@@ -1,19 +1,27 @@
 FROM ubi8/python-38 as base
 
+RUN pip install pipenv
+
 WORKDIR /usr/src/app
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ["Pipfile", "Pipfile.lock", "./"]
+# Install deps in existing virtualenv -- don't create nested venv nightmare
+RUN pipenv install --deploy --system
 
-COPY . .
 
-
+# Install dev-deps and run tests
 FROM base as test
 
-RUN pip install --no-cache-dir -r requirements-dev.txt
-RUN python -m unittest
+RUN pipenv install --dev --deploy --system
+
+COPY . .
+RUN pylint hello
+RUN pylint --disable=missing-docstring tests
+RUN pytest
 
 
+# Throw away dev-deps and any testing artifacts for final image
 FROM base
 
+COPY . .
 CMD ["python", "./entrypoint.py"]

@@ -1,0 +1,6 @@
+[packages]
+cowsay = "*"
+
+[dev-packages]
+pytest = "*"
+pylint = "*"

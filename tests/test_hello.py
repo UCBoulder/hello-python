@@ -1,6 +1,5 @@
 from unittest import TestCase
 from unittest.mock import patch
-import os
 
 import hello
 
@@ -12,6 +11,7 @@ class TestHello(TestCase):
         self.stegosaurus = self.patches[-1].start()
 
     def tearDown(self):
+        # pylint: disable=invalid-name
         for p in self.patches:
             p.stop()
 
