@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/python-38:1-22 as base
+FROM cuartifacts-platform-engineering-docker-local.jfrog.io/ubi8-min-python:8.2-301 as base
 
 RUN pip install pipenv
 
