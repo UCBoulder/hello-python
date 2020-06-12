@@ -1,7 +1,6 @@
 FROM cuartifacts-platform-engineering-docker-local.jfrog.io/ubi8-min-python:8.2-301 as base
 
-COPY ["Pipfile", "Pipfile.lock", "."]
-# Install deps in existing virtualenv -- don't create nested venv nightmare
+COPY ["Pipfile", "Pipfile.lock", "./"]
 RUN pipenv install --deploy
 
 
@@ -11,13 +10,13 @@ FROM base as test
 RUN pipenv install --dev --deploy
 
 COPY . .
-RUN pylint hello
-RUN pylint --disable=missing-docstring tests
-RUN pytest
+RUN pipenv run pylint hello
+RUN pipenv run pylint --disable=missing-docstring tests
+RUN pipenv run pytest
 
 
 # Throw away dev-deps and any testing artifacts for final image
 FROM base
 
 COPY . .
-CMD ["python", "./entrypoint.py"]
+CMD ["pipenv", "run", "python", "./entrypoint.py"]
