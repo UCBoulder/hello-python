@@ -21,11 +21,17 @@ IMG_NAME=$(basename $IMG_BASE)
 
 CURL_AUTH=''
 # assume that artifactory credentials are passed in env variables
-if echo $REPO_HOST | grep -q 'artifactory'; then
+if echo $REPO_HOST | grep -q 'jfrog'; then
     CURL_AUTH="-u ${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}"
 fi
 
+# needed to handle curl failure
+set -o pipefail
 ALL_TAGS=$(curl ${CURL_AUTH} -L https://${REPO_HOST}/v2/${IMG_NAME}/tags/list | jq '.tags' | jq -r '.[]' | sort -V -r)
+if [ $? -ne 0 ]; then
+    echo "Failed pulling latest tags"
+    exit 1
+fi
 
 for tag in $ALL_TAGS; do
     tag_fmt=$(echo $tag | sed $GET_VER_FMT)
