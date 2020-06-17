@@ -3,6 +3,8 @@ name: Bump Base Container Version
 on:
   schedule:
     - cron: '17 4 * * 2'
+  repository_dispatch:
+    types: [bump]
 
 jobs:
   bump_docker:
