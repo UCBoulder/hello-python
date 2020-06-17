@@ -14,6 +14,9 @@ jobs:
 
       - name: bump base version
         run: bash bump_docker_base.sh
+        env:
+          REPO_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+          REPO_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
 
       - uses: EndBug/add-and-commit@v4
         with:

@@ -21,8 +21,8 @@ IMG_NAME=$(basename $IMG_BASE)
 
 CURL_AUTH=''
 # assume that artifactory credentials are passed in env variables
-if echo $REPO_HOST | grep -q 'jfrog'; then
-    CURL_AUTH="-u ${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}"
+if [ -n $REPO_USERNAME ] && [ -n $REPO_PASSWORD ]; then
+    CURL_AUTH="-u ${REPO_USERNAME}:${REPO_PASSWORD}"
 fi
 
 # needed to handle curl failure
