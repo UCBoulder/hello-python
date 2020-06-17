@@ -6,6 +6,8 @@ on:
       - master
     paths:
       - "**"
+  schedule:
+    - cron: '17 5 * * 2'
 
 jobs:
   build:
