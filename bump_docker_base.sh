@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# This script bumps the version number pinned on the FROM line of a Dockerfile
+#
+# Author: wiha1292
+# Version: 1.0
+# Modified: June 18, 2020
 
 # looks like: FROM registry.access.redhat.com/ubi8-minimal:8.2-267 AS foobar
 FROM_LINE=$(grep -m 1 FROM Dockerfile)
