@@ -37,3 +37,22 @@ or
 or
 
     docker run -e MESSAGE='¡Hola Mundo!' hello-python:latest
+
+### Manually trigger jobs
+
+Submit a POST to
+
+    https://api.github.com/repos/CUB-OIT-PE/hello-python/dispatches
+
+with a body of
+
+    {
+	"event_type": "bump",
+	"client_payload": {}
+    }
+
+or
+    {
+	"event_type": "build",
+	"client_payload": {}
+    }
