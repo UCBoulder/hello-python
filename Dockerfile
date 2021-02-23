@@ -1,4 +1,4 @@
-FROM cuartifacts-platform-engineering-docker-local.jfrog.io/ubi8-min-python:8.3-230 as base
+FROM cuartifacts-platform-engineering-docker-local.jfrog.io/ubi8-min-python:8.3-291 as base
 
 COPY ["Pipfile", "Pipfile.lock", "./"]
 RUN pipenv install --deploy
